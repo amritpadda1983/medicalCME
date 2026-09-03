@@ -6,214 +6,503 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>QuizPro Exam</title>
+<title>QuizPro | Practice Exams</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
+/* ================================
+   RESET
+================================ */
+
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-background:linear-gradient(135deg,#2563eb,#7c3aed);
-padding:30px;
-}
-
-.container{
-
-max-width:900px;
-margin:auto;
-background:white;
-padding:40px;
-border-radius:25px;
-box-shadow:0 20px 50px rgba(0,0,0,.2);
-
-}
-
-.header{
-
-text-align:center;
-margin-bottom:30px;
-
-}
-
-.header h1{
-
-color:#2563eb;
-font-size:38px;
-
-}
-
-.header p{
-
-color:#666;
-
+    background:#f5f7fb;
+    color:#222;
 }
 
 
-/* Progress */
+/* ================================
+   FIXED SCROLL PROGRESS BAR
+================================ */
 
-.progress-info{
+#scrollProgressContainer{
 
-display:flex;
-justify-content:space-between;
-font-weight:600;
-margin-bottom:10px;
+    position:fixed !important;
+
+    top:0 !important;
+    left:0 !important;
+    right:0 !important;
+
+    width:100% !important;
+    height:8px !important;
+
+    background:#dbe3f0;
+
+    z-index:2147483647 !important;
+
+    pointer-events:none;
 
 }
 
+#scrollProgressBar{
 
-.progress-container{
+    position:absolute;
 
-height:18px;
-background:#e5e7eb;
-border-radius:20px;
-overflow:hidden;
-margin-bottom:30px;
+    top:0;
+    left:0;
+
+    height:100%;
+
+    width:0%;
+
+    background:linear-gradient(
+        90deg,
+        #2563eb,
+        #4f46e5,
+        #7c3aed
+    );
+
+    border-radius:0 5px 5px 0;
+
+    transition:width:0.05s linear;
 
 }
 
 
-.progress-bar{
+/* ================================
+   HEADER
+================================ */
 
-height:100%;
-width:0%;
-background:#2563eb;
-transition:.3s;
+header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px 8%;
+
+    background:white;
+
+    box-shadow:0 2px 15px rgba(0,0,0,.08);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+}
+
+.logo{
+
+    font-size:30px;
+
+    font-weight:700;
+
+    color:#2563eb;
+
+}
+
+nav a{
+
+    text-decoration:none;
+
+    margin-left:25px;
+
+    color:#444;
+
+    font-weight:500;
+
+    transition:.3s;
+
+}
+
+nav a:hover{
+
+    color:#2563eb;
 
 }
 
 
-/* Questions */
+/* ================================
+   HERO
+================================ */
 
-.question{
+.hero{
 
-background:#f8fafc;
-padding:25px;
-border-radius:15px;
-margin-bottom:25px;
-border:1px solid #e5e7eb;
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:80px 8%;
+
+    min-height:90vh;
+
+}
+
+.hero-text{
+
+    max-width:550px;
+
+}
+
+.hero-text h1{
+
+    font-size:55px;
+
+    line-height:1.2;
+
+    margin-bottom:20px;
+
+}
+
+.hero-text h1 span{
+
+    color:#2563eb;
+
+}
+
+.hero-text p{
+
+    font-size:18px;
+
+    line-height:1.8;
+
+    margin-bottom:35px;
+
+    color:#666;
 
 }
 
 
-.question h3{
+/* ================================
+   BUTTON
+================================ */
 
-margin-bottom:20px;
+.btn{
+
+    display:inline-block;
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:18px 40px;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.btn:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-3px);
 
 }
 
 
-.option{
+/* ================================
+   HERO IMAGE
+================================ */
 
-display:block;
-padding:15px;
-margin:12px 0;
-background:white;
-border:2px solid #e5e7eb;
-border-radius:12px;
-cursor:pointer;
+.hero-image{
 
-}
+    width:420px;
 
+    height:420px;
 
-.option:hover{
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #4f46e5
+        );
 
-border-color:#2563eb;
+    border-radius:30px;
 
-}
+    display:flex;
 
+    justify-content:center;
 
-.option input{
+    align-items:center;
 
-margin-right:12px;
+    font-size:150px;
 
-}
+    color:white;
 
-
-.correct{
-
-background:#dcfce7 !important;
-border-color:#16a34a !important;
-
-}
-
-
-.wrong{
-
-background:#fee2e2 !important;
-border-color:#dc2626 !important;
+    box-shadow:
+        0 20px 40px
+        rgba(37,99,235,.3);
 
 }
 
 
+/* ================================
+   FEATURES
+================================ */
 
-/* Email */
+.features{
 
-.email-box{
+    padding:100px 8%;
 
-background:#f8fafc;
-padding:25px;
-border-radius:15px;
-margin-top:30px;
-margin-bottom:20px;
+    text-align:center;
+
+}
+
+.features h2{
+
+    font-size:40px;
+
+    margin-bottom:50px;
+
+}
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(250px,1fr)
+        );
+
+    gap:30px;
+
+}
+
+.card{
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:18px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+.card h3{
+
+    margin:20px 0;
+
+    color:#2563eb;
 
 }
 
 
-.email-box label{
+/* ================================
+   PRICING
+================================ */
 
-display:block;
-font-weight:600;
-margin-bottom:10px;
+.price{
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:100px 8%;
+
+    text-align:center;
+
+}
+
+.price h2{
+
+    font-size:42px;
+
+    margin-bottom:20px;
+
+}
+
+.price-box{
+
+    background:white;
+
+    color:#222;
+
+    max-width:420px;
+
+    margin:auto;
+
+    padding:40px;
+
+    border-radius:20px;
+
+}
+
+.amount{
+
+    font-size:60px;
+
+    font-weight:700;
+
+    color:#2563eb;
+
+    margin:20px 0;
+
+}
+
+.price-box ul{
+
+    list-style:none;
+
+    margin:25px 0;
+
+}
+
+.price-box li{
+
+    margin:15px 0;
 
 }
 
 
-.email-box input{
+/* ================================
+   FOOTER
+================================ */
 
-width:100%;
-padding:15px;
-border-radius:10px;
-border:2px solid #ddd;
-font-size:16px;
+.footer{
 
-}
+    background:#111827;
 
+    color:white;
 
-.email-box input:focus{
+    text-align:center;
 
-outline:none;
-border-color:#2563eb;
+    padding:50px 20px;
 
-}
-
-
-/* Submit */
-
-.submit{
-
-width:100%;
-padding:18px;
-background:#2563eb;
-color:white;
-border:none;
-border-radius:12px;
-font-size:18px;
-font-weight:700;
-cursor:pointer;
+    margin-top:0;
 
 }
 
 
-.submit:hover{
+/* ================================
+   MOBILE
+================================ */
 
-background:#1d4ed8;
+@media(max-width:900px){
+
+    header{
+
+        padding:18px 5%;
+
+    }
+
+    .logo{
+
+        font-size:25px;
+
+    }
+
+    nav a{
+
+        margin-left:10px;
+
+        font-size:14px;
+
+    }
+
+    .hero{
+
+        flex-direction:column;
+
+        text-align:center;
+
+        padding:60px 5%;
+
+    }
+
+    .hero-image{
+
+        margin-top:50px;
+
+        width:300px;
+
+        height:300px;
+
+        font-size:110px;
+
+    }
+
+    .hero-text h1{
+
+        font-size:40px;
+
+    }
+
+}
+
+
+@media(max-width:500px){
+
+    nav a{
+
+        margin-left:5px;
+
+        font-size:12px;
+
+    }
+
+    .hero-text h1{
+
+        font-size:32px;
+
+    }
+
+    .hero-image{
+
+        width:240px;
+
+        height:240px;
+
+        font-size:90px;
+
+    }
+
+    .btn{
+
+        padding:15px 25px;
+
+        font-size:16px;
+
+    }
 
 }
 
@@ -225,287 +514,362 @@ background:#1d4ed8;
 <body>
 
 
-<div class="container">
+<!-- ==================================
+     ALWAYS-VISIBLE PROGRESS BAR
+================================== -->
 
+<div id="scrollProgressContainer">
 
-<div class="header">
-
-<h1>📝 QuizPro Exam</h1>
-
-<p>Select the best answer for each question</p>
-
-</div>
-
-
-
-<div class="progress-info">
-
-<span id="progressText">
-Answered: 0 / 5
-</span>
-
-<span>
-Progress
-</span>
+    <div id="scrollProgressBar"></div>
 
 </div>
 
 
-<div class="progress-container">
+<!-- ==================================
+     HEADER
+================================== -->
 
-<div class="progress-bar" id="progressBar"></div>
+<header>
 
-</div>
+    <div class="logo">
+        QuizPro
+    </div>
 
+    <nav>
 
+        <a href="#features">
+            Features
+        </a>
 
+        <a href="#pricing">
+            Pricing
+        </a>
 
-<form action="submit.html" method="GET">
+        <a href="#contact">
+            Contact
+        </a>
 
+    </nav>
 
+</header>
 
-<div class="question">
 
-<h3>1. What does HTML stand for?</h3>
+<!-- ==================================
+     HERO
+================================== -->
 
-<label class="option">
-<input type="radio" name="q1" value="wrong">
-High Tech Modern Language
-</label>
+<section class="hero">
 
-<label class="option">
-<input type="radio" name="q1" value="correct">
-Hyper Text Markup Language
-</label>
+    <div class="hero-text">
 
-<label class="option">
-<input type="radio" name="q1" value="wrong">
-Home Tool Markup Language
-</label>
+        <h1>
+            Pass Your
+            <span>
+                Certification Exam
+            </span>
+            With Confidence
+        </h1>
 
-<label class="option">
-<input type="radio" name="q1" value="wrong">
-Hyperlink Transfer Machine Language
-</label>
+        <p>
 
-</div>
+            Take professionally designed
+            practice exams with instant scoring,
+            timed testing, and detailed results.
 
+            No account required.
 
+            Simply pay and begin your test.
 
+        </p>
 
-<div class="question">
+        <a
+            href="payment.html"
+            class="btn">
 
-<h3>2. Which language adds interactivity to websites?</h3>
+            Pay &amp; Start Test →
 
-<label class="option">
-<input type="radio" name="q2" value="wrong">
-HTML
-</label>
+        </a>
 
-<label class="option">
-<input type="radio" name="q2" value="wrong">
-CSS
-</label>
+    </div>
 
-<label class="option">
-<input type="radio" name="q2" value="correct">
-JavaScript
-</label>
 
-<label class="option">
-<input type="radio" name="q2" value="wrong">
-SQL
-</label>
+    <div class="hero-image">
 
-</div>
+        📝
 
+    </div>
 
+</section>
 
 
-<div class="question">
+<!-- ==================================
+     FEATURES
+================================== -->
 
-<h3>3. Which CSS property changes background color?</h3>
+<section
+    class="features"
+    id="features">
 
-<label class="option">
-<input type="radio" name="q3" value="wrong">
-color
-</label>
+    <h2>
+        Why Choose QuizPro?
+    </h2>
 
-<label class="option">
-<input type="radio" name="q3" value="correct">
-background-color
-</label>
 
-<label class="option">
-<input type="radio" name="q3" value="wrong">
-bg-color
-</label>
+    <div class="cards">
 
-<label class="option">
-<input type="radio" name="q3" value="wrong">
-background-style
-</label>
 
-</div>
+        <div class="card">
 
+            <h3>
+                ⏱ Timed Exams
+            </h3>
 
+            <p>
+                Experience a real exam
+                environment with countdown
+                timers.
+            </p>
 
+        </div>
 
-<div class="question">
 
-<h3>4. Which HTML tag creates a hyperlink?</h3>
+        <div class="card">
 
-<label class="option">
-<input type="radio" name="q4" value="wrong">
-&lt;link&gt;
-</label>
+            <h3>
+                📊 Instant Results
+            </h3>
 
-<label class="option">
-<input type="radio" name="q4" value="wrong">
-&lt;href&gt;
-</label>
+            <p>
+                Receive your score immediately
+                after submitting.
+            </p>
 
-<label class="option">
-<input type="radio" name="q4" value="correct">
-&lt;a&gt;
-</label>
+        </div>
 
-<label class="option">
-<input type="radio" name="q4" value="wrong">
-&lt;url&gt;
-</label>
 
-</div>
+        <div class="card">
 
+            <h3>
+                💳 Secure Payment
+            </h3>
 
+            <p>
+                Fast and secure checkout
+                before accessing your test.
+            </p>
 
+        </div>
 
-<div class="question">
 
-<h3>5. Which language retrieves data from databases?</h3>
+        <div class="card">
 
-<label class="option">
-<input type="radio" name="q5" value="wrong">
-HTML
-</label>
+            <h3>
+                📱 Mobile Friendly
+            </h3>
 
-<label class="option">
-<input type="radio" name="q5" value="correct">
-SQL
-</label>
+            <p>
+                Take your exam from desktop,
+                tablet, or smartphone.
+            </p>
 
-<label class="option">
-<input type="radio" name="q5" value="wrong">
-CSS
-</label>
+        </div>
 
-<label class="option">
-<input type="radio" name="q5" value="wrong">
-XML
-</label>
 
-</div>
+    </div>
 
+</section>
 
 
+<!-- ==================================
+     PRICING
+================================== -->
 
+<section
+    class="price"
+    id="pricing">
 
-<!-- EMAIL AT END -->
+    <h2>
+        One-Time Access
+    </h2>
 
-<div class="email-box">
 
-<label>
-Enter email address to receive results
-</label>
+    <div class="price-box">
 
-<input 
-type="email"
-name="email"
-placeholder="example@email.com"
-required>
+        <h3>
+            Practice Exam
+        </h3>
 
-</div>
 
+        <div class="amount">
 
+            $9.99
 
-<button class="submit" type="submit">
+        </div>
 
-Submit Exam ✓
 
-</button>
+        <ul>
 
+            <li>
+                ✔ 100 Questions
+            </li>
 
+            <li>
+                ✔ 90 Minute Timer
+            </li>
 
-</form>
+            <li>
+                ✔ Instant Score
+            </li>
 
+            <li>
+                ✔ One Attempt
+            </li>
 
-</div>
+            <li>
+                ✔ Secure Payment
+            </li>
 
+        </ul>
 
 
+        <br>
+
+
+        <a
+            href="payment.html"
+            class="btn">
+
+            Pay &amp; Start Test
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================
+     FOOTER
+================================== -->
+
+<footer
+    class="footer"
+    id="contact">
+
+    <h2>
+        QuizPro
+    </h2>
+
+    <br>
+
+    <p>
+        Practice. Prepare. Pass.
+    </p>
+
+    <br>
+
+    <p>
+        © 2026 QuizPro. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<!-- ==================================
+     SCROLL PROGRESS JAVASCRIPT
+================================== -->
 
 <script>
 
-let answeredQuestions = new Set();
+(function(){
+
+    function updateProgress(){
+
+        const scrollTop =
+            window.pageYOffset ||
+            document.documentElement.scrollTop ||
+            document.body.scrollTop ||
+            0;
 
 
-document.querySelectorAll("input[type=radio]")
-.forEach(input=>{
+        const documentHeight =
+            Math.max(
+                document.body.scrollHeight,
+                document.documentElement.scrollHeight,
+                document.body.offsetHeight,
+                document.documentElement.offsetHeight
+            );
 
 
-input.addEventListener("change",function(){
+        const windowHeight =
+            window.innerHeight;
 
 
-let question=this.name;
+        const scrollableHeight =
+            documentHeight - windowHeight;
 
 
-document.querySelectorAll(
-`input[name="${question}"]`
-)
-.forEach(item=>{
-
-item.parentElement.classList.remove(
-"correct",
-"wrong"
-);
-
-});
+        let percentage = 0;
 
 
+        if(scrollableHeight > 0){
 
-if(this.value==="correct"){
+            percentage =
+                (scrollTop / scrollableHeight) * 100;
 
-this.parentElement.classList.add("correct");
-
-}
-else{
-
-this.parentElement.classList.add("wrong");
-
-}
+        }
 
 
-
-answeredQuestions.add(question);
-
-
-
-let count=answeredQuestions.size;
-
-
-document.getElementById("progressText").innerHTML=
-`Answered: ${count} / 5`;
+        percentage =
+            Math.min(
+                100,
+                Math.max(0, percentage)
+            );
 
 
-document.getElementById("progressBar").style.width=
-(count/5)*100+"%";
+        const progressBar =
+            document.getElementById(
+                "scrollProgressBar"
+            );
 
 
-});
+        if(progressBar){
+
+            progressBar.style.width =
+                percentage + "%";
+
+        }
+
+    }
 
 
-});
+    /* Run immediately */
+    updateProgress();
 
+
+    /* Update while scrolling */
+    window.addEventListener(
+        "scroll",
+        updateProgress,
+        {passive:true}
+    );
+
+
+    /* Update after page loads */
+    window.addEventListener(
+        "load",
+        updateProgress
+    );
+
+
+    /* Update if screen size changes */
+    window.addEventListener(
+        "resize",
+        updateProgress
+    );
+
+
+})();
 
 </script>
 
