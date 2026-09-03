@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Exam Completed | QuizPro</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+
+}
+
+
+
+.card{
+
+    background:white;
+
+    width:500px;
+
+    max-width:90%;
+
+    padding:50px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.2);
+
+}
+
+
+
+.check{
+
+    width:100px;
+
+    height:100px;
+
+    background:#22c55e;
+
+    color:white;
+
+    font-size:60px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin:0 auto 25px;
+
+}
+
+
+
+h1{
+
+    color:#111827;
+
+    margin-bottom:15px;
+
+}
+
+
+
+p{
+
+    color:#666;
+
+    font-size:18px;
+
+    line-height:1.6;
+
+}
+
+
+
+.count{
+
+    margin-top:25px;
+
+    font-size:22px;
+
+    color:#2563eb;
+
+    font-weight:700;
+
+}
+
+
+
+button{
+
+    margin-top:25px;
+
+    padding:15px 30px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#2563eb;
+
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<div class="card">
+
+
+<div class="check">
+✓
+</div>
+
+
+<h1>
+Thank You!
+</h1>
+
+
+<p>
+Your exam has been completed successfully.
+Your results have been recorded.
+</p>
+
+
+<div class="count">
+
+Redirecting to home page in 
+<span id="seconds">10</span> seconds...
+
+</div>
+
+
+<button onclick="goHome()">
+
+Return Home Now
+
+</button>
+
+
+</div>
+
+
+
+<script>
+
+
+let seconds = 10;
+
+
+let timer = setInterval(function(){
+
+
+seconds--;
+
+
+document.getElementById("seconds").innerHTML = seconds;
+
+
+
+if(seconds <= 0){
+
+
+clearInterval(timer);
+
+
+goHome();
+
+
+}
+
+
+},1000);
+
+
+
+
+function goHome(){
+
+window.location.href="index.html";
+
+}
+
+
+
+</script>
+
+
+</body>
+
+</html>
