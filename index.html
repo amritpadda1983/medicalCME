@@ -202,12 +202,22 @@ font-size:40px;
 }
 
 }
+.scroll-progress-bar{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#2563eb,#4f46e5);
+    transition:width:.1s linear;
+}
 
 </style>
 
 </head>
 
 <body>
+<!-- Scroll Progress Bar -->
+<div class="scroll-progress">
+    <div class="scroll-progress-bar" id="progressBar"></div>
+</div>
 
 <header>
 
@@ -337,6 +347,24 @@ Practice. Prepare. Pass.
 </p>
 
 </footer>
+<script>
+
+window.addEventListener("scroll", function(){
+
+    const scrollTop = window.scrollY;
+
+    const documentHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+    const scrollPercentage =
+        (scrollTop / documentHeight) * 100;
+
+    document.getElementById("progressBar").style.width =
+        scrollPercentage + "%";
+
+});
+
+</script>
 
 </body>
 </html>
